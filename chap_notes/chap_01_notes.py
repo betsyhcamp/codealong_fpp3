@@ -49,12 +49,32 @@
 #
 # ## 1.4 Forecasting data and methods
 # * Choice of the appropriate forecasting methods depends primarily on what data is available.
-# * If there's no data available or the data available isn't relevant to the forecasts, **qualitative forecasting** must be done. This is more than guesswork and structured approaches are possible.
-# * **Quantitative forecasting** using statistical approaches can be employed when two conditions are met;
+# * If there's no data available or the data available isn't relevant to the forecasts, **qualitative forecasting** must be done. This is more than guesswork and structured approaches are possible with well known methods.
+# * **Quantitative forecasting** using statistical approaches can be employed when two conditions are met:
 #     1. Numerical information about the past is available
 #     2. It is reasonable to assume that some aspects of the past patterns will continue into the future.
 # * Many time series forecasting methods available often developed with a specific purpose. Each methods had pros/cons.
 # * A **time series** is anything that is observed sequentially over time. These observations may be at regular time intervals or at irregular time intervals (will only cover regular time intervals in this book)
+# ### Predictor variables, model types, and time series forecasting
+# * Some models use only the information in the times series itself and project the patterns in history into the future while other models may use additional predictors that explain the variation in history.
+# * Two general extremes for model types (using electricity demand as the response variable as an example case):
+#     1. Explanatory models: Uses additional variables that explain the variation in electricity demand but doesn't take into account the history of electricity demand. For example an explanatory model might be:
+#     $$D = f(CurrentTemperature, StrengthOfEconomy, Population, TimeOfDay, DayOfWeek, Error) $$
+# where the error term represents random variation as well the the effects of relevant variables not included in the model
+#     2. Time series model: Uses history of the time series itself as a set of predictors to forecast the response variable, electricity demand, but does not include any additional external variables that may impact the system. For example:
+#     $$D_{t+1}=f(D_t, D_{t-1}, D_{t-2}, D_{t-3}, ..., error)$$
+#     where $t+1$ is one hour in the future, $t$ is the present hour, $t-1$ is the previous hour, $t-2$ is two hours ago, etc.
+#     
+# * Dynamic Regression models are models that incorporate features of both explanatory models and time series. Dynamic regression models are also called longitudinal models, or transfer function models. Related to Dynamic Regression models are Distributed Lag regression models that only include lag. Example of Dynamic Regression model:
+#     $$D_{t+1}=f(D_t, CurrentTemperature, TimeOfDay, DayOfWeek, error)$$
+#     
+# ## 1.5, 1.6 - no notes since very high level remarks
 #
-
-# %%
+# ## 1.7 The statistical forecasting perspective
+# * The thing we are trying to forecast is unknown and can be considered as a random variable thus it could take a range of possible values
+# * When we obtain a forecast, in most cases, we are estimating the middle of the distribution of possible values of the randome variable could take. Thus, we are estimating the expected value of the random variable.
+#     * This forecasted value which is the expected value of the forecast distribution is the **point forecast**
+# * Often a prediction interval, a range of possible values about the point forecast, where the actual value will fall with a given level of confidence is provided along with the point forecast. 
+#     * The width of the prediction interval reflects the uncertainty in the forecasted value
+#     * Typically, there is more uncertainty in the forecast as the time horizon increases. Thus, the width of the prediction interval typically increase with forecast horizon.
+#     
